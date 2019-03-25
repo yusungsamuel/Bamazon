@@ -30,7 +30,7 @@ connection.connect(function(err) {
 
 function displayInventory() {
     connection.query("SELECT * FROM products", function (err, res) {
-        if (err) throw err
+        if (err) throw err;
 
         var table = new Table({
             head: ["item id", "product name", "department", "price", "quantity"]
@@ -45,6 +45,8 @@ function displayInventory() {
 
 
         console.log(table.toString());
+
+        customerAction()
 
     })
 }
@@ -77,6 +79,12 @@ function customerAction() {
             }
         }
     ]).then(function(response){
-        
+        connection.query("SELECT stock_quantity FROM products WHERE ?", {item_id:response.id}, function(err, res){
+            if (err) throw err;
+
+            if(res[0].stock_quantity < parseInt(response.quantity)){
+                console.log("Insufficient quantity!")
+            }
+        })
     })
 }
