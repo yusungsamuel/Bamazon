@@ -1,0 +1,2 @@
+INSERT INTO products (product_name, department_name, price, stock_quantity)
+VALUES ("macbook charger", "electronics", 49.99, 5), ("Hydroflask", "sports equiment", 29.99, 10), ("Microwave", "kitchen aid", 150, 2), ("Pencil", "school supplies", 0.5, 100), ("Binder Papers", "school supplies", 5, 300);
