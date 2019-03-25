@@ -34,7 +34,7 @@ function displayInventory() {
 
         var table = new Table({
             head: ["item id", "product name", "department", "price", "quantity"]
-            , colWidths: [20, 40]
+            , colWidths: [10, 30, 20, 10, 10]
         });
 
         // table is an Array, so you can `push`, `unshift`, `splice` and friends
@@ -79,11 +79,19 @@ function customerAction() {
             }
         }
     ]).then(function(response){
-        connection.query("SELECT stock_quantity FROM products WHERE ?", {item_id:response.id}, function(err, res){
+        connection.query("SELECT price, stock_quantity FROM products WHERE ?", {item_id:response.id}, function(err, res){
+            var itemPrice = res[0].price;
+            var amountWant = parseInt(response.quantity)
             if (err) throw err;
 
-            if(res[0].stock_quantity < parseInt(response.quantity)){
+            if(res[0].stock_quantity < amountWant){
                 console.log("Insufficient quantity!")
+            }
+            else {
+                connection.query("UPDATE products SET stock_quantity= ? WHERE ?", [res[0].stock_quantity - amountWant,{item_id:response.id}], function(err){
+                    if (err) throw err
+                    console.log("Your total is " + (itemPrice * amountWant))
+                })
             }
         })
     })
