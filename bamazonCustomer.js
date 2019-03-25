@@ -50,4 +50,33 @@ function displayInventory() {
 }
 
 
-
+function customerAction() {
+    inquirer.prompt([
+        {
+            message: "What is the item id of the item you would like to purchase?",
+            name: "id",
+            validate: function (input) {
+                if (parseInt(input)) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+        },
+        {
+            message: "How many of this item would you like to purchse?",
+            name: "quantity",
+            validate: function (input) {
+                if (parseInt(input)) {
+                    return true
+                }
+                else {
+                    return false
+                }
+            }
+        }
+    ]).then(function(response){
+        
+    })
+}
