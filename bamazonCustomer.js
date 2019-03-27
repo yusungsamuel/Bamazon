@@ -37,7 +37,6 @@ function displayInventory() {
             , colWidths: [10, 30, 20, 10, 10]
         });
 
-        // table is an Array, so you can `push`, `unshift`, `splice` and friends
 
         for (var i = 0; i < res.length; i++) {
             table.push([res[i].item_id, res[i].product_name, res[i].department_name, "$" + res[i].price, res[i].stock_quantity])
@@ -45,20 +44,20 @@ function displayInventory() {
 
 
         console.log(table.toString());
-
-        customerAction()
+        var lastItemID = res.length
+        customerAction(lastItemID)
 
     })
 }
 
 
-function customerAction() {
+function customerAction(idNum) {
     inquirer.prompt([
         {
             message: "What is the item id of the item you would like to purchase?",
             name: "id",
             validate: function (input) {
-                if (parseInt(input)) {
+                if (parseInt(input) <= idNum) {
                     return true
                 }
                 else {
@@ -70,7 +69,7 @@ function customerAction() {
             message: "How many of this item would you like to purchse?",
             name: "quantity",
             validate: function (input) {
-                if (parseInt(input)) {
+                if (parseInt(input) > 0) {
                     return true
                 }
                 else {
