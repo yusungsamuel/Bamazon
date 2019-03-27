@@ -49,7 +49,24 @@ function displayInventory() {
         
         //variable to be use to validate input for item ID to see if the input is greater than the largest ID number
         var lastItemID = res.length
-        customerAction(lastItemID)
+        
+        inquirer.prompt([
+            {
+                type:"list", 
+                message: "What would you like to do?",
+                choices: ["Make a purchase", "Exit"],
+                name: "option"
+            }
+        ]).then(function(response){
+            if (response.option === "Exit"){
+                connection.end()
+            }
+            else {
+                customerAction(lastItemID)
+            }
+            
+        })
+        
 
     })
 }
