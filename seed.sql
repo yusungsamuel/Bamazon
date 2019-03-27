@@ -1,2 +1,2 @@
 INSERT INTO products (product_name, department_name, price, stock_quantity)
-VALUES ("macbook charger", "electronics", 49.99, 5), ("Hydroflask", "sports equiment", 29.99, 10), ("Microwave", "kitchen aid", 150, 2), ("Pencil", "school supplies", 0.5, 100), ("Binder Papers", "school supplies", 5, 300);
+VALUES ("Macbook Charger", "Electronics", 49.99, 5), ("Hydroflask", "Sports Equiment", 29.99, 10), ("Microwave", "Kitchen Aid", 150, 2), ("Pencil", "School Supplies", 0.5, 100), ("Binder Papers", "School Supplies", 5, 300), ("Rice Cooker" , "Kitchen Aid", 300, 8), ("Wireless mouse", "Electronics", 25, 20), ("Baseball Hat", "Sports Equiment", 21.99, 150),("Balenciaga Shoes", "Fashion", 950, 3);

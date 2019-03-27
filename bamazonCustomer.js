@@ -86,13 +86,16 @@ function customerAction() {
 
             if(res[0].stock_quantity < amountWant){
                 console.log("Insufficient quantity!")
+                displayInventory()
             }
             else {
                 connection.query("UPDATE products SET stock_quantity= ? WHERE ?", [res[0].stock_quantity - amountWant,{item_id:response.id}], function(err){
                     if (err) throw err
-                    console.log("Your total is " + (itemPrice * amountWant))
+                    console.log("Your total is $" + (itemPrice * amountWant))
+                    displayInventory()
                 })
             }
+            
         })
     })
 }
